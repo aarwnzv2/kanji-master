@@ -541,7 +541,7 @@ export default function KanjiMaster() {
             />
             <button
               className="btn btn-success"
-              onClick={() => handleSetUsername(document.getElementById('usernameInput').value)}
+              onClick={() => handleSetUsername((document.getElementById('usernameInput') as HTMLInputElement).value)}
             >
               Start Learning!
             </button>

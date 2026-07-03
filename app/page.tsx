@@ -41,7 +41,7 @@ export default function KanjiMaster() {
   const [dark, setDark] = useState(false);
   const [flipped, setFlipped] = useState(false);
   const [mode, setMode] = useState('learn');
-  const [drawing, setDrawing] = useState(false);
+  const drawingRef = useRef(false);
   const [srsQueue, setSrsQueue] = useState([]);
   const [notificationEnabled, setNotificationEnabled] = useState(false);
   const canvasRef = useRef(null);
@@ -408,14 +408,14 @@ export default function KanjiMaster() {
     const ctx = canvas.getContext('2d');
 
     const startDrawing = (e) => {
-      setDrawing(true);
+      drawingRef.current = true;
       const rect = canvas.getBoundingClientRect();
       ctx.beginPath();
       ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
     };
 
     const draw = (e) => {
-      if (!drawing) return;
+      if (!drawingRef.current) return;
       const rect = canvas.getBoundingClientRect();
       ctx.lineWidth = 4;
       ctx.lineCap = 'round';
@@ -426,7 +426,7 @@ export default function KanjiMaster() {
     };
 
     const stopDrawing = () => {
-      setDrawing(false);
+      drawingRef.current = false;
       ctx.closePath();
     };
 

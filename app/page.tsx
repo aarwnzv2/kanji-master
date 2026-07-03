@@ -454,7 +454,7 @@ export default function KanjiMaster() {
   const missionComplete = dailyMissionsDone >= dailyGoal;
   const levelData = kanjiData[level] || {};
   const levelLearned = Object.keys(levelData).length;
-  const levelMastered = Object.values(levelData).filter((d) => d.stage === 4).length;
+  const levelMastered = Object.values(levelData).filter((d: any) => d && d.stage === 4).length;
   const progress = Math.round((levelLearned / kanjis.length) * 100);
 
   // Loading auth

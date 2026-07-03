@@ -477,11 +477,12 @@ export default function KanjiMaster() {
       if (isDrawn) drawnPixels++;
     }
 
-    // Besoin de BEAUCOUP plus de pixels pour un vrai dessin
-    const isValid = drawnPixels > 500;
+    // Besoin d'un VRAI dessin complet - minimum 1500 pixels
+    const minPixels = 1500;
+    const isValid = drawnPixels > minPixels;
 
     if (!isValid) {
-      alert(`❌ Pas assez! Dessine le kanji complet.\n(Pixels détectés: ${drawnPixels}/500)`);
+      alert(`❌ Pas assez! Dessine le kanji COMPLET et bien.\n(Pixels: ${drawnPixels}/${minPixels})`);
     }
 
     return isValid;

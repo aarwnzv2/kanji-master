@@ -441,7 +441,7 @@ export default function KanjiMaster() {
       canvas.removeEventListener('mouseup', stopDrawing);
       canvas.removeEventListener('mouseleave', stopDrawing);
     };
-  }, [drawing, dark]);
+  }, [dark]);
 
   const clearCanvas = () => {
     const canvas = canvasRef.current;

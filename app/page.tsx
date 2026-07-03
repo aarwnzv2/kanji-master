@@ -461,17 +461,27 @@ export default function KanjiMaster() {
     const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
     const data = imageData.data;
 
-    // Compte les pixels non-vides (alpha > 128)
+    // Compte les pixels non-vides (non-blancs/non-noir fond)
     let drawnPixels = 0;
-    for (let i = 3; i < data.length; i += 4) {
-      if (data[i] > 128) drawnPixels++;
+    for (let i = 0; i < data.length; i += 4) {
+      const r = data[i];
+      const g = data[i + 1];
+      const b = data[i + 2];
+      const a = data[i + 3];
+
+      // Detecte les pixels dessinés (noirs en clair, blancs/gris en sombre)
+      const isDrawn = dark
+        ? (r < 100 && g < 100 && b < 100 && a > 200)  // Noir en sombre mode
+        : (r < 100 && g < 100 && b < 100 && a > 200);  // Noir en clair mode
+
+      if (isDrawn) drawnPixels++;
     }
 
-    // Besoin de minimum 50 pixels pour valider
-    const isValid = drawnPixels > 50;
+    // Besoin de BEAUCOUP plus de pixels pour un vrai dessin
+    const isValid = drawnPixels > 500;
 
     if (!isValid) {
-      alert('❌ Dessine mieux! Tu n\'as pas dessiné le kanji correctement.');
+      alert(`❌ Pas assez! Dessine le kanji complet.\n(Pixels détectés: ${drawnPixels}/500)`);
     }
 
     return isValid;

@@ -25,42 +25,12 @@ export default function KanjiMaster() {
 
   // Load kanji database from JSON
   const [kanjiDatabase, setKanjiDatabase] = useState({
-    N5: [
-      { kanji: '一', meaning: 'one', hiragana: 'いち', story: 'A single line' },
-      { kanji: '二', meaning: 'two', hiragana: 'に', story: 'Two lines' },
-      { kanji: '三', meaning: 'three', hiragana: 'さん', story: 'Three lines' },
-      { kanji: '四', meaning: 'four', hiragana: 'し', story: 'A box' },
-      { kanji: '五', meaning: 'five', hiragana: 'ご', story: 'A cross' },
-      { kanji: '六', meaning: 'six', hiragana: 'ろく', story: 'Roof with bar' },
-      { kanji: '七', meaning: 'seven', hiragana: 'しち', story: 'Hook on line' },
-      { kanji: '八', meaning: 'eight', hiragana: 'はち', story: 'Two spread lines' },
-      { kanji: '九', meaning: 'nine', hiragana: 'きゅう', story: 'Hook and line' },
-      { kanji: '十', meaning: 'ten', hiragana: 'じゅう', story: 'A cross' },
-      { kanji: '人', meaning: 'person', hiragana: 'ひと', story: 'Two legs' },
-      { kanji: '大', meaning: 'big', hiragana: 'おお', story: 'Arms spread' },
-      { kanji: '山', meaning: 'mountain', hiragana: 'やま', story: 'Three peaks' },
-      { kanji: '川', meaning: 'river', hiragana: 'かわ', story: 'Water lines' },
-      { kanji: '水', meaning: 'water', hiragana: 'みず', story: 'Water drops' },
-    ],
-    N4: [
-      { kanji: '火', meaning: 'fire', hiragana: 'ひ', story: 'Flames' },
-      { kanji: '木', meaning: 'tree', hiragana: 'き', story: 'Tree shape' },
-      { kanji: '金', meaning: 'gold', hiragana: 'きん', story: 'Metal' },
-      { kanji: '土', meaning: 'earth', hiragana: 'つち', story: 'Ground' },
-      { kanji: '月', meaning: 'moon', hiragana: 'つき', story: 'Crescent' },
-    ],
-    N3: [
-      { kanji: '日', meaning: 'sun', hiragana: 'ひ', story: 'Sun box' },
-      { kanji: '目', meaning: 'eye', hiragana: 'め', story: 'Eye with pupil' },
-      { kanji: '口', meaning: 'mouth', hiragana: 'くち', story: 'Mouth open' },
-    ],
-    N2: [
-      { kanji: '手', meaning: 'hand', hiragana: 'て', story: 'Hand' },
-    ],
-    N1: [
-      { kanji: '足', meaning: 'foot', hiragana: 'あし', story: 'Foot' },
-    ],
-  };
+    N5: [],
+    N4: [],
+    N3: [],
+    N2: [],
+    N1: [],
+  });
 
   const levels = ['N5', 'N4', 'N3', 'N2', 'N1'];
   const duelDuration = 30; // seconds

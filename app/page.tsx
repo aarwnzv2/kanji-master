@@ -394,18 +394,21 @@ export default function KanjiMaster() {
   };
 
   useEffect(() => {
-    if (canvasRef.current) {
+    if (canvasRef.current && mode === 'write') {
       const canvas = canvasRef.current;
       const ctx = canvas.getContext('2d');
       ctx.fillStyle = dark ? '#1e293b' : '#ffffff';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
     }
-  }, [dark]);
+  }, [mode, dark]);
 
   useEffect(() => {
-    if (!canvasRef.current) return;
+    if (!canvasRef.current || mode !== 'write') return;
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
+    ctx.lineWidth = 4;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
 
     const startDrawing = (e) => {
       drawingRef.current = true;
@@ -441,7 +444,7 @@ export default function KanjiMaster() {
       canvas.removeEventListener('mouseup', stopDrawing);
       canvas.removeEventListener('mouseleave', stopDrawing);
     };
-  }, [dark]);
+  }, [mode, dark]);
 
   const clearCanvas = () => {
     const canvas = canvasRef.current;

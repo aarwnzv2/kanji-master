@@ -537,7 +537,7 @@ export default function KanjiMaster() {
               type="text"
               placeholder="Enter your username..."
               id="usernameInput"
-              maxLength="20"
+              maxLength={20}
             />
             <button
               className="btn btn-success"

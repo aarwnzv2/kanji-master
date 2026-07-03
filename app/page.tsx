@@ -453,6 +453,30 @@ export default function KanjiMaster() {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
   };
 
+  const validateKanjiDrawing = () => {
+    const canvas = canvasRef.current;
+    if (!canvas) return false;
+
+    const ctx = canvas.getContext('2d');
+    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    const data = imageData.data;
+
+    // Compte les pixels non-vides (alpha > 128)
+    let drawnPixels = 0;
+    for (let i = 3; i < data.length; i += 4) {
+      if (data[i] > 128) drawnPixels++;
+    }
+
+    // Besoin de minimum 50 pixels pour valider
+    const isValid = drawnPixels > 50;
+
+    if (!isValid) {
+      alert('❌ Dessine mieux! Tu n\'as pas dessiné le kanji correctement.');
+    }
+
+    return isValid;
+  };
+
   const dailyGoal = 5;
   const missionComplete = dailyMissionsDone >= dailyGoal;
   const levelData = kanjiData[level] || {};
@@ -780,8 +804,10 @@ export default function KanjiMaster() {
                   🗑️ Clear
                 </button>
                 <button className="btn btn-success" onClick={() => {
-                  handleSRSCorrect();
-                  clearCanvas();
+                  if (validateKanjiDrawing()) {
+                    handleSRSCorrect();
+                    clearCanvas();
+                  }
                 }}>
                   ✓ Done
                 </button>

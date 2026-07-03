@@ -394,13 +394,13 @@ export default function KanjiMaster() {
   };
 
   useEffect(() => {
-    if (canvasRef.current && mode === 'write') {
+    if (canvasRef.current) {
       const canvas = canvasRef.current;
       const ctx = canvas.getContext('2d');
       ctx.fillStyle = dark ? '#1e293b' : '#ffffff';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
     }
-  }, [mode, dark]);
+  }, [dark]);
 
   useEffect(() => {
     if (!canvasRef.current) return;
